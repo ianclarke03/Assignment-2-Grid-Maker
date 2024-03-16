@@ -7,10 +7,12 @@ let colorSelected;
 function addR() {
     //alert("Clicked Add Row"); // Replace this line with your code.
     let table = document.getElementById("grid");
-    let newRow = table.insertRow(0);
+    
     if(numCols == 0){
         numCols++; //now 1 column
     }
+
+    let newRow = table.insertRow(0);
 
     for(let i = 0; i < numCols; i++){
         const newCell = newRow.insertCell(i);
@@ -24,7 +26,21 @@ function addR() {
 
 // Add a column
 function addC() {
-    alert("Clicked Add Col"); // Replace this line with your code.
+    //alert("Clicked Add Col"); // Replace this line with your code.
+    let table = document.getElementById("grid");
+   
+    if(numRows == 0){
+        numRows++; //now 1 row
+    }
+
+    for(let i = 0; i < numRows; i++){
+        const newCell = table.rows[i].insertCell(-1);
+        newCell.setAttribute("onclick", "alert('Clicked a table cell');");
+    }
+
+    numCols++;
+    console.log("addC func going off");
+
 }
 
 // Remove a row
