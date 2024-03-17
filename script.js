@@ -8,44 +8,60 @@ function addR() {
     //alert("Clicked Add Row"); // Replace this line with your code.
     let table = document.getElementById("grid");
     
+    numRows++;
+
     if(numCols == 0){
         numCols++; //now 1 column
     }
 
-    let newRow = table.insertRow(0);
+    let newRow = table.insertRow(-1);
 
     for(let i = 0; i < numCols; i++){
         const newCell = newRow.insertCell(i);
         newCell.setAttribute("onclick", "alert('Clicked a table cell');");
     }
 
-    numRows++;
+
     console.log("row func going off")
 
 }
 
 // Add a column
 function addC() {
-    //alert("Clicked Add Col"); // Replace this line with your code.
     let table = document.getElementById("grid");
    
-    if(numRows == 0){
-        numRows++; //now 1 row
-    }
-
-    for(let i = 0; i < numRows; i++){
-        const newCell = table.rows[i].insertCell(-1);
-        newCell.setAttribute("onclick", "alert('Clicked a table cell');");
-    }
-
     numCols++;
-    console.log("addC func going off");
 
+    if (numRows === 0) {
+        addR(); // Add a row if there are no rows
+    } 
+    
+    else {
+        for (let i = 0; i < numRows; i++) {
+            const newRow = table.rows[i];
+            const newCell = newRow.insertCell(-1); // Insert cell at the end of the row
+            newCell.setAttribute("onclick", "alert('Clicked a table cell');");
+        }
+    }
+
+
+    console.log("addC function executed");
 }
+
 
 // Remove a row
 function removeR() {
-    alert("Clicked Remove Row"); // Replace this line with your code.
+    //alert("Clicked Remove Row"); // Replace this line with your code.
+
+    let table = document.getElementById("grid");
+    
+    if(numRows > 0){
+
+        table.deleteRow(-1);
+        numRows--;
+        
+    }
+
 }
 
 // Remove a column
