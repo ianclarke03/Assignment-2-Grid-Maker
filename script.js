@@ -103,7 +103,6 @@ function fillU(){
         for (let j = 0; j < numCols; j++) {
             const cell = table.rows[i].cells[j];
             let bgColor = getComputedStyle(cell).backgroundColor;
-            console.log(bgColor);
 
             
             // if cell is uncolored or white
@@ -118,7 +117,21 @@ function fillU(){
 
 // Fill all cells
 function fillAll(){
-    alert("Clicked Fill All"); // Replace this line with your code.
+    //alert("Clicked Fill All"); // Replace this line with your code.
+
+    let table = document.getElementById("grid");
+
+    for (let i = 0; i < numRows; i++) {
+        for (let j = 0; j < numCols; j++) {
+            const cell = table.rows[i].cells[j];
+
+            cell.style.backgroundColor = colorSelected;
+        }
+
+    }
+
+    console.log("fillAll func executed");
+
 }
 
 // Clear all cells
