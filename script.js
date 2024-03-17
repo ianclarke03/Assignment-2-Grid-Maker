@@ -18,7 +18,7 @@ function addR() {
 
     for(let i = 0; i < numCols; i++){
         const newCell = newRow.insertCell(i);
-        newCell.setAttribute("onclick", "alert('Clicked a table cell');");
+        //newCell.setAttribute("onclick", "alert('Clicked a table cell');");
     }
 
 
@@ -40,7 +40,7 @@ function addC() {
         for (let i = 0; i < numRows; i++) {
             const newRow = table.rows[i];
             const newCell = newRow.insertCell(-1); // Insert cell at the end of the row
-            newCell.setAttribute("onclick", "alert('Clicked a table cell');");
+            //newCell.setAttribute("onclick", "alert('Clicked a table cell');");
         }
     }
 
@@ -86,11 +86,29 @@ function removeC() {
 
 }
 
+//helper func
+//color a single cell, by clicking on the cell, and change its color to the selected color
+function colorCell(cell) {
+    cell.style.backgroundColor = colorSelected;
+}
+
 // Set global variable for selected color
 function selectColor(){
     colorSelected = document.getElementById("selectedColorId").value;
     console.log(colorSelected);
-    //onClick();
+
+    let table = document.getElementById("grid");
+
+    for (let i = 0; i < numRows; i++) {
+        for (let j = 0; j < numCols; j++) {
+            const cell = table.rows[i].cells[j];
+
+            cell.addEventListener("click", function() {
+                colorCell(cell);
+            });
+        }
+    }
+
 }
 
 // Fill all uncolored cells
