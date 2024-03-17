@@ -82,7 +82,7 @@ function removeC() {
         numCols--;
 
     }
-    console.log("removeC func exececuted");
+    console.log("removeC func executed");
 
 }
 
@@ -90,11 +90,30 @@ function removeC() {
 function selectColor(){
     colorSelected = document.getElementById("selectedColorId").value;
     console.log(colorSelected);
+    //onClick();
 }
 
 // Fill all uncolored cells
 function fillU(){
-    alert("Clicked Fill All Uncolored"); // Replace this line with your code.
+    //alert("Clicked Fill All Uncolored"); // Replace this line with your code.
+    //traverse rows and columns, if cell has no color make it colorSelected
+    let table = document.getElementById("grid");
+
+    for (let i = 0; i < numRows; i++) {
+        for (let j = 0; j < numCols; j++) {
+            const cell = table.rows[i].cells[j];
+            let bgColor = getComputedStyle(cell).backgroundColor;
+            console.log(bgColor);
+
+            
+            // if cell is uncolored or white
+            if (bgColor === "rgba(0, 0, 0, 0)" || bgColor === "transparent" || bgColor === "none" || bgColor === "rgb(255, 255, 255)") {
+                cell.style.backgroundColor = colorSelected;
+            }
+        }
+    }
+    
+    console.log("fillU func executed");
 }
 
 // Fill all cells
